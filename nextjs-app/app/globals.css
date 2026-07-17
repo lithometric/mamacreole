@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm Haitian-bistro palette */
+  --color-espresso: #150d09;
+  --color-cocoa: #201310;
+  --color-clay: #2c1a13;
+  --color-cream: #f7ecdb;
+  --color-cream-soft: #d9c8b2;
+  --color-mango: #ff8a3d;
+  --color-ember: #e8501e;
+  --color-gold: #e9b44c;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-dm-sans);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-espresso);
+  color: var(--color-cream);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-ember);
+  color: var(--color-cream);
+}
+
+/* --- Scroll reveal (driven by components/Reveal.tsx) --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Marquee --- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 36s linear infinite;
+}
+
+/* --- Slow ambient motion --- */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 90s linear infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -3%, 0) scale(1.06);
+  }
+}
+.drift {
+  animation: drift 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee-track,
+  .spin-slow,
+  .drift {
+    animation: none;
+  }
+}
