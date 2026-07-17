@@ -2,33 +2,22 @@ import { BUSINESS, HOURS } from "@/lib/business";
 import Reveal from "./Reveal";
 import { RouteArt } from "./art";
 
+/** Hours + location grid, rendered under the Visit page header. */
 export default function Visit() {
   return (
     <section
       id="visit"
-      aria-labelledby="visit-heading"
+      aria-label="Hours and location details"
       className="border-t border-cream/10 bg-cocoa/60"
     >
-      <div className="mx-auto max-w-6xl scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32">
-        <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-            Come hungry
-          </p>
-          <h2
-            id="visit-heading"
-            className="font-display mt-3 text-4xl font-semibold tracking-tight text-cream sm:text-5xl"
-          >
-            Hours &amp; location
-          </h2>
-        </Reveal>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
+        <div className="grid gap-6 lg:grid-cols-2">
           {/* Hours */}
           <Reveal>
-            <div className="h-full rounded-3xl border border-cream/10 bg-espresso p-8 sm:p-10">
-              <h3 className="font-display text-2xl font-medium text-cream">
+            <div className="lift h-full rounded-3xl border border-cream/10 bg-espresso p-8 sm:p-10">
+              <h2 className="font-display text-2xl font-medium text-cream">
                 Opening hours
-              </h3>
+              </h2>
               <dl className="mt-6 divide-y divide-cream/10">
                 {HOURS.map((row) => (
                   <div
@@ -53,10 +42,10 @@ export default function Visit() {
 
           {/* Location */}
           <Reveal delay={150}>
-            <div className="flex h-full flex-col rounded-3xl border border-cream/10 bg-espresso p-8 sm:p-10">
-              <h3 className="font-display text-2xl font-medium text-cream">
+            <div className="lift flex h-full flex-col rounded-3xl border border-cream/10 bg-espresso p-8 sm:p-10">
+              <h2 className="font-display text-2xl font-medium text-cream">
                 Find us
-              </h3>
+              </h2>
               <address className="mt-6 not-italic">
                 <p className="font-display text-3xl font-medium leading-tight text-cream">
                   {BUSINESS.address.street}

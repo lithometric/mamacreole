@@ -49,6 +49,88 @@ body {
   transform: none;
 }
 
+/* --- Page enter transition (applied by app/template.tsx on every navigation) --- */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.page-enter {
+  animation: page-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Staggered entrance for hero / page-header children */
+.stagger > * {
+  animation: page-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.stagger > :nth-child(1) {
+  animation-delay: 0.05s;
+}
+.stagger > :nth-child(2) {
+  animation-delay: 0.15s;
+}
+.stagger > :nth-child(3) {
+  animation-delay: 0.25s;
+}
+.stagger > :nth-child(4) {
+  animation-delay: 0.35s;
+}
+.stagger > :nth-child(5) {
+  animation-delay: 0.45s;
+}
+
+/* --- Nav link underline slide --- */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -6px;
+  height: 2px;
+  background: var(--color-mango);
+  transition: right 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  right: 0;
+}
+
+/* --- Card hover lift --- */
+.lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Branded loading pulse (app/loading.tsx) --- */
+@keyframes bloom-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+.bloom-pulse {
+  animation: bloom-pulse 1.6s ease-in-out infinite;
+}
+
 /* --- Marquee --- */
 @keyframes marquee {
   from {
@@ -96,7 +178,15 @@ body {
   }
   .marquee-track,
   .spin-slow,
-  .drift {
+  .drift,
+  .page-enter,
+  .stagger > *,
+  .bloom-pulse {
     animation: none;
+  }
+  .lift,
+  .lift:hover {
+    transform: none;
+    transition: none;
   }
 }

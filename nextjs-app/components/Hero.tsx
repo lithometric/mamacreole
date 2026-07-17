@@ -28,7 +28,7 @@ export default function Hero() {
         <Hibiscus className="absolute -bottom-40 -left-32 h-[480px] w-[480px] rotate-12 text-ember/20" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl">
+      <div className="stagger relative mx-auto w-full max-w-6xl">
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-cream/15 bg-cream/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-cream-soft">
           <span
             aria-hidden="true"

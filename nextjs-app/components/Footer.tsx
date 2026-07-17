@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BUSINESS, HOURS } from "@/lib/business";
 
 export default function Footer() {
@@ -57,14 +58,19 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="#menu" className="hover:text-cream">
+              <Link href="/menu" className="hover:text-cream">
                 From the kitchen
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#reviews" className="hover:text-cream">
-                Guest reviews
-              </a>
+              <Link href="/about" className="hover:text-cream">
+                About Mama Creole
+              </Link>
+            </li>
+            <li>
+              <Link href="/visit" className="hover:text-cream">
+                Hours &amp; location
+              </Link>
             </li>
           </ul>
         </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { DISHES } from "@/lib/business";
 import Reveal from "./Reveal";
 
@@ -7,7 +8,15 @@ const plateGradients = [
   "from-mango/55 to-ember/30",
 ];
 
-export default function Dishes() {
+export default function Dishes({
+  limit,
+  showAllLink = false,
+}: {
+  limit?: number;
+  showAllLink?: boolean;
+}) {
+  const dishes = limit ? DISHES.slice(0, limit) : DISHES;
+
   return (
     <section
       id="menu"
@@ -32,9 +41,9 @@ export default function Dishes() {
         </Reveal>
 
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {DISHES.map((dish, i) => (
+          {dishes.map((dish, i) => (
             <Reveal as="li" key={dish.name} delay={(i % 3) * 100}>
-              <article className="group h-full rounded-3xl border border-cream/10 bg-espresso p-7 transition-colors duration-300 hover:border-mango/40">
+              <article className="lift group h-full rounded-3xl border border-cream/10 bg-espresso p-7 hover:border-mango/40">
                 <div
                   aria-hidden="true"
                   className={`mb-6 h-14 w-14 rounded-full bg-gradient-to-br ${
@@ -51,6 +60,19 @@ export default function Dishes() {
             </Reveal>
           ))}
         </ul>
+
+        {showAllLink ? (
+          <Reveal delay={200}>
+            <div className="mt-12">
+              <Link
+                href="/menu"
+                className="inline-block rounded-full border border-cream/25 px-7 py-4 font-semibold text-cream transition-colors hover:border-mango/60 hover:bg-cream/5 hover:text-mango"
+              >
+                See what&apos;s cooking →
+              </Link>
+            </div>
+          </Reveal>
+        ) : null}
       </div>
     </section>
   );

@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BUSINESS } from "@/lib/business";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#menu", label: "Menu" },
-  { href: "#reviews", label: "Reviews" },
-  { href: "#visit", label: "Hours & Location" },
+  { href: "/", label: "Home" },
+  { href: "/menu", label: "Menu" },
+  { href: "/about", label: "About" },
+  { href: "/visit", label: "Hours & Location" },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -30,23 +33,26 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="font-display text-xl font-semibold tracking-tight text-cream"
         >
           Mama<span className="text-mango"> Creole</span>
-        </a>
+        </Link>
 
         <nav aria-label="Primary" className="hidden md:block">
           <ul className="flex items-center gap-7">
             {links.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
-                  className="text-sm font-medium text-cream-soft transition-colors hover:text-cream"
+                  aria-current={pathname === link.href ? "page" : undefined}
+                  className={`nav-link text-sm font-medium transition-colors hover:text-cream ${
+                    pathname === link.href ? "text-cream" : "text-cream-soft"
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -103,13 +109,16 @@ export default function Header() {
           <ul className="flex flex-col gap-1">
             {links.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-3 text-base font-medium text-cream-soft hover:bg-cream/5 hover:text-cream"
+                  aria-current={pathname === link.href ? "page" : undefined}
+                  className={`block rounded-lg px-3 py-3 text-base font-medium hover:bg-cream/5 hover:text-cream ${
+                    pathname === link.href ? "text-cream" : "text-cream-soft"
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, DM_Sans } from "next/font/google";
 import { BUSINESS, HOURS_SCHEMA } from "@/lib/business";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -20,7 +22,10 @@ export const metadata: Metadata = {
   metadataBase: process.env.VERCEL_URL
     ? new URL(`https://${process.env.VERCEL_URL}`)
     : undefined,
-  title: `${BUSINESS.name} — ${BUSINESS.category} in Union, NJ`,
+  title: {
+    default: `${BUSINESS.name} — ${BUSINESS.category} in Union, NJ`,
+    template: `%s · ${BUSINESS.name}`,
+  },
   description,
   openGraph: {
     title: `${BUSINESS.name} — ${BUSINESS.category}`,
@@ -74,7 +79,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-cream focus:px-5 focus:py-3 focus:font-semibold focus:text-espresso"
+        >
+          Skip to content
+        </a>
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
