@@ -3,6 +3,8 @@ Business: https://www.google.com/maps/place/?q=place_id:ChIJU4DUfdGtw4kRhGfL552z
 
 Marketing site for **Mama Creole** — Haitian & Caribbean restaurant, 1029 Stuyvesant Ave., Union, NJ 07083 — generated from the business's public Google listing. The Next.js app lives in [`nextjs-app/`](nextjs-app/).
 
+**Live:** https://mamacreole.vercel.app
+
 ## Local development
 
 ```bash
