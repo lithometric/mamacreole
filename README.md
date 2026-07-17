@@ -20,4 +20,5 @@ npm run dev
 ## Content notes
 
 - All facts on the site (name, address, phone, hours, dishes, review snippets) come from the business's public listings; nothing is invented.
-- All imagery is original CSS/SVG art generated for this site — no third-party photos are used or hotlinked.
+- Photos in `nextjs-app/public/photos/` are still frames from Mama Creole's own public TikTok videos (@mama.creole) — the business's own promotional footage — re-hosted with the owner's permission (relayed by the client, July 2026). See `nextjs-app/lib/photos.ts`.
+- No Google Maps photos, reviewer-uploaded photos, or third-party directory images are used or hotlinked anywhere. Decorative art is original CSS/SVG.

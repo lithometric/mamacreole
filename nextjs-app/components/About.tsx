@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { BUSINESS, SERVICES } from "@/lib/business";
+import { PHOTOS } from "@/lib/photos";
 import Reveal from "./Reveal";
 import { SunMark } from "./art";
 
@@ -33,6 +35,15 @@ export default function About() {
         </Reveal>
 
         <Reveal delay={150}>
+          <figure className="lift relative mb-6 aspect-[4/3] overflow-hidden rounded-3xl border border-cream/10">
+            <Image
+              src={PHOTOS.diningRoom.src}
+              alt={PHOTOS.diningRoom.alt}
+              fill
+              sizes="(min-width: 1024px) 45vw, 90vw"
+              className="object-cover object-top"
+            />
+          </figure>
           <ul className="grid gap-4" aria-label="Ways to enjoy Mama Creole">
             {SERVICES.map((service, i) => (
               <li

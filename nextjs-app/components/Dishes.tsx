@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { DISHES } from "@/lib/business";
+import { PHOTOS, type Photo } from "@/lib/photos";
 import Reveal from "./Reveal";
 
 const plateGradients = [
@@ -7,6 +9,12 @@ const plateGradients = [
   "from-gold/50 to-mango/25",
   "from-mango/55 to-ember/30",
 ];
+
+// Real photos from the business's own footage, where we have one for the dish.
+const dishPhotos: Record<string, Photo> = {
+  Griot: PHOTOS.griot,
+  Legume: PHOTOS.legume,
+};
 
 export default function Dishes({
   limit,
@@ -43,19 +51,35 @@ export default function Dishes({
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {dishes.map((dish, i) => (
             <Reveal as="li" key={dish.name} delay={(i % 3) * 100}>
-              <article className="lift group h-full rounded-3xl border border-cream/10 bg-espresso p-7 hover:border-mango/40">
-                <div
-                  aria-hidden="true"
-                  className={`mb-6 h-14 w-14 rounded-full bg-gradient-to-br ${
-                    plateGradients[i % plateGradients.length]
-                  } ring-1 ring-inset ring-cream/15 transition-transform duration-300 group-hover:scale-110`}
-                />
-                <h3 className="font-display text-2xl font-medium text-cream">
-                  {dish.name}
-                </h3>
-                <p className="mt-3 leading-relaxed text-cream-soft">
-                  {dish.description}
-                </p>
+              <article className="lift group h-full overflow-hidden rounded-3xl border border-cream/10 bg-espresso hover:border-mango/40">
+                {dishPhotos[dish.name] ? (
+                  <div className="relative h-44 overflow-hidden">
+                    <Image
+                      src={dishPhotos[dish.name].src}
+                      alt={dishPhotos[dish.name].alt}
+                      fill
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-espresso/60 to-transparent" />
+                  </div>
+                ) : null}
+                <div className="p-7">
+                  {!dishPhotos[dish.name] ? (
+                    <div
+                      aria-hidden="true"
+                      className={`mb-6 h-14 w-14 rounded-full bg-gradient-to-br ${
+                        plateGradients[i % plateGradients.length]
+                      } ring-1 ring-inset ring-cream/15 transition-transform duration-300 group-hover:scale-110`}
+                    />
+                  ) : null}
+                  <h3 className="font-display text-2xl font-medium text-cream">
+                    {dish.name}
+                  </h3>
+                  <p className="mt-3 leading-relaxed text-cream-soft">
+                    {dish.description}
+                  </p>
+                </div>
               </article>
             </Reveal>
           ))}

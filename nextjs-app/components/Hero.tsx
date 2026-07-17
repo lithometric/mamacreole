@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { BUSINESS } from "@/lib/business";
+import { PHOTOS } from "@/lib/photos";
 import { Hibiscus } from "./art";
 
 export default function Hero() {
@@ -28,7 +30,8 @@ export default function Hero() {
         <Hibiscus className="absolute -bottom-40 -left-32 h-[480px] w-[480px] rotate-12 text-ember/20" />
       </div>
 
-      <div className="stagger relative mx-auto w-full max-w-6xl">
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="stagger">
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-cream/15 bg-cream/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-cream-soft">
           <span
             aria-hidden="true"
@@ -71,6 +74,30 @@ export default function Hero() {
         <p className="mt-10 text-sm text-cream-soft/80">
           Tue–Sat 11 AM–10 PM · Sun 11 AM–8 PM · Closed Mondays
         </p>
+        </div>
+
+        {/* Their own kitchen's plates — see lib/photos.ts for provenance */}
+        <div className="drift relative hidden lg:block" aria-hidden={false}>
+          <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-ember/40 to-gold/20 blur-2xl" />
+          <Image
+            src={PHOTOS.griot.src}
+            alt={PHOTOS.griot.alt}
+            width={PHOTOS.griot.width}
+            height={PHOTOS.griot.height}
+            priority
+            sizes="(min-width: 1024px) 38vw, 0px"
+            className="relative rotate-2 rounded-[2.5rem] border border-cream/15 object-cover shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
+          />
+          <Image
+            src={PHOTOS.tostones.src}
+            alt={PHOTOS.tostones.alt}
+            width={PHOTOS.tostones.width}
+            height={PHOTOS.tostones.height}
+            priority
+            sizes="(min-width: 1024px) 20vw, 0px"
+            className="absolute -bottom-10 -left-14 w-52 -rotate-3 rounded-3xl border border-cream/15 object-cover shadow-[0_20px_50px_rgba(0,0,0,0.55)]"
+          />
+        </div>
       </div>
     </section>
   );
