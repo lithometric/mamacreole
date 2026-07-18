@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BUSINESS } from "@/lib/business";
@@ -35,9 +36,20 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Link
           href="/"
-          className="font-display text-xl font-semibold tracking-tight text-cream"
+          className="flex items-center gap-3 font-display text-xl font-semibold tracking-tight text-cream"
         >
-          Mama<span className="text-mango"> Creole</span>
+          <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-white ring-1 ring-cream/25 sm:h-11 sm:w-11">
+            <Image
+              src="/logo.jpg"
+              alt="Mama Creole logo"
+              fill
+              sizes="44px"
+              className="object-cover"
+            />
+          </span>
+          <span>
+            Mama<span className="text-mango"> Creole</span>
+          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden md:block">

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
-import Dishes from "@/components/Dishes";
+import FullMenu from "@/components/FullMenu";
 import CtaBand from "@/components/CtaBand";
 import { BUSINESS } from "@/lib/business";
 
 export const metadata: Metadata = {
   title: "Menu",
-  description: `Haitian classics at ${BUSINESS.name} in Union, NJ — griot, legume, soup joumou, pikliz and more. Call ${BUSINESS.phone.display} for the full menu and today's specials.`,
+  description: `The full ${BUSINESS.name} menu in Union, NJ — appetizers, small bites, arozé bowls, dinners, sides, beverages, and desserts. Call ${BUSINESS.phone.display} for today's specials.`,
 };
 
 export default function MenuPage() {
@@ -14,10 +14,10 @@ export default function MenuPage() {
     <>
       <PageHeader
         eyebrow="The menu"
-        title="What's cooking"
-        description="The Haitian classics Mama Creole is known for. Call the restaurant for the full menu, today's specials, and to place a takeout order."
+        title="The full menu"
+        description="Every plate from the Mama Creole kitchen — appetizers, small bites, arozé bowls, dinners, sides, and desserts. Call ahead for today's specials or to place a takeout order."
       />
-      <Dishes />
+      <FullMenu />
       <CtaBand />
     </>
   );
